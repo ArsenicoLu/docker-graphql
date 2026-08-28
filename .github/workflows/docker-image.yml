@@ -25,10 +25,33 @@ jobs:
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      # El simbolo de pipe | indica que se van a introducir comandos   
       run: |
         echo "Iniciando login"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "Fin del login"
+        
+    # Construccion de la imagen
+    - name: build docker image
+      run: |
+        docker build -t angeloc19/docker-graphql:0.0.1 .
+
+    # Hacer push a la imagen
+    - name: push docker image
+      run: |
+        docker push anegloc19/docker-graphql:0.0.1 .
+
+    
+
+        
+
+
+
+
+
+
+
+    
 
     
     # - name: Build the Docker image
