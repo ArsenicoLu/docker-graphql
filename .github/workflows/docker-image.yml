@@ -12,7 +12,24 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    # La parte de steps es nuestro pipeline, es decir la serie de pasos que va a seguir
+    steps: 
+    # Este paso toma todo el codigo del repo
+    - name: checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    # Ahora vamos a tratar a acceder con nuestras credenciales a docker hub
+    - name: docker login
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        echo "Iniciando login"
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        echo "Fin del login"
+
+    
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
