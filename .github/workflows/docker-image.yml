@@ -42,7 +42,7 @@ jobs:
       run: |
         echo "Iniciando login"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        echo "Agregando nueva versión!!"
+        echo "Agregando nueva versión: $NEW_VERSION !!"
         echo "Fin del login"
         
     # # Construccion de la imagen
