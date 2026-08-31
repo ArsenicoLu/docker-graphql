@@ -35,11 +35,13 @@ jobs:
     - name: build docker image
       run: |
         docker build -t angeloc19/docker-graphql:0.0.1 .
+        docker build -t angeloc19/docker-graphql .
 
     # Hacer push a la imagen
     - name: push docker image
       run: |
         docker push angeloc19/docker-graphql:0.0.1
+        docker push angeloc19/docker-graphql
 
     
 
