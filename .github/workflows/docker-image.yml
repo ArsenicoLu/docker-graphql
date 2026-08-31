@@ -47,14 +47,18 @@ jobs:
         
     # Construccion de la imagen
     - name: build docker image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-        docker build -t angeloc19/docker-graphql:0.0.1 .
+        docker build -t angeloc19/docker-graphql:$NEW_VERSION .
         docker build -t angeloc19/docker-graphql .
 
     # Hacer push a la imagen
     - name: push docker image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-        docker push angeloc19/docker-graphql:0.0.1
+        docker push angeloc19/docker-graphql:$NEW_VERSION
         docker push angeloc19/docker-graphql
         
 
